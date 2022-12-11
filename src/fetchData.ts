@@ -6,6 +6,7 @@ export type Person = {
     needing_repair: boolean
     durability: number,
     mileage: number,
+    price: number,
     subRows?: Person[]
 }
 
