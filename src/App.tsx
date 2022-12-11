@@ -345,13 +345,13 @@ function App() {
                                    onChange={(e) => handleDateChange(e.target.value, 'to', table.getSelectedRowModel().flatRows[0]?.original)}
                                    placeholder="To Date" className="input input-bordered w-full max-w-xs"/>
                         </div>
-                        <input onChange={(e) => setUsedMileage(parseInt(e.target.value))} placeholder="Mileage Used" type="number"
+                        <input value={usedMileage} onChange={(e) => setUsedMileage(parseInt(e.target.value))} placeholder="Mileage Used" type="number"
                                className="input input-bordered w-full max-w-xs"/>
                         <div className="form-control">
                             <label className="cursor-pointer label">
                                 <span className="label-text">Needs Repair</span>
                                 <input onChange={(e) => setNeedsRepair(e.target.checked)} type="checkbox"
-                                       className="checkbox checkbox-warning"/>
+                                       checked={needsRepair} className="checkbox checkbox-warning"/>
                             </label>
                         </div>
                         <h3>Estimated Price: {estimatedPrice}</h3>
