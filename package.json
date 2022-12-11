@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@tanstack/match-sorter-utils": "^8.7.0",

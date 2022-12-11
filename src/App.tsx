@@ -89,7 +89,7 @@ function App() {
     }
 
     const handleBooking = () => {
-        fetch('http://localhost:8000/api/v1/bookings/', {
+        fetch('/api/v1/bookings/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ function App() {
     }
 
     const handleReturn = () => {
-        fetch('http://localhost:8000/api/v1/returns/', {
+        fetch('/api/v1/returns/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
