@@ -165,19 +165,36 @@ function App() {
                 footer: props => props.column.id,
             },
             {
+                accessorKey: 'code',
+                header: 'Code',
+                footer: props => props.column.id,
+            },
+            {
                 accessorKey: 'name',
                 header: 'Name',
                 footer: props => props.column.id,
+
             },
             {
                 accessorKey: 'availability',
                 header: 'Availability',
                 footer: props => props.column.id,
+                cell: ({row}) => (
+                    <div className={row.getValue('availability') ? "badge badge-success p-3" : "badge badge-error p-3"}>
+                        <strong>{row.getValue('availability') ? 'Available' : 'Not Available'}</strong>
+                    </div>
+                )
             },
             {
                 accessorKey: 'needing_repair',
                 header: 'Need to repair',
                 footer: props => props.column.id,
+                cell: ({row}) => (
+                    <div className={row.getValue('needing_repair') ? "badge badge-warning p-3" : "badge badge-success p-3"}>
+                        <strong>{row.getValue('needing_repair') ? 'Yes' : 'No'}</strong>
+                    </div>
+                )
+
             },
             {
                 accessorKey: 'durability',
@@ -305,7 +322,7 @@ function App() {
                 </table>
             </div>
             <div className="h-2"/>
-            <div className="flex gap-2">
+            <div className="flex justify-end gap-2">
                 <label htmlFor="booking-modal" className="btn">Book</label>
                 <input type="checkbox" id="booking-modal" className="modal-toggle"/>
                 <div className="modal">
@@ -330,7 +347,7 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <label htmlFor="return-modal" className="btn">Return</label>
+                <label htmlFor="return-modal" className="btn btn-warning">Return</label>
                 <input type="checkbox" id="return-modal" className="modal-toggle"/>
                 <div className="modal">
                     <div className="modal-box">
@@ -345,7 +362,8 @@ function App() {
                                    onChange={(e) => handleDateChange(e.target.value, 'to', table.getSelectedRowModel().flatRows[0]?.original)}
                                    placeholder="To Date" className="input input-bordered w-full max-w-xs"/>
                         </div>
-                        <input value={usedMileage} onChange={(e) => setUsedMileage(parseInt(e.target.value))} placeholder="Mileage Used" type="number"
+                        <input value={usedMileage} onChange={(e) => setUsedMileage(parseInt(e.target.value))}
+                               placeholder="Mileage Used" type="number"
                                className="input input-bordered w-full max-w-xs"/>
                         <div className="form-control">
                             <label className="cursor-pointer label">
@@ -366,7 +384,7 @@ function App() {
 
             </div>
             <div className="h-2"/>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 mb-3">
                 <button
                     className="btn"
                     onClick={() => table.setPageIndex(0)}
@@ -427,9 +445,9 @@ function App() {
                 </select>
                 {dataQuery.isFetching ? 'Loading...' : null}
             </div>
-            <div>{table.getRowModel().rows.length} Rows</div>
+            {/*<div>{table.getRowModel().rows.length} Rows</div>*/}
             <div>
-                <button onClick={() => rerender()}>Force Rerender</button>
+                <button className="btn btn-primary" onClick={() => rerender()}>Force Rerender</button>
             </div>
             {/*<pre>{JSON.stringify(pagination, null, 2)}</pre>*/}
         </div>
